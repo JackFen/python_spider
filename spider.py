@@ -14,10 +14,11 @@ def main():
     baseurl="https://movie.douban.com/top250?start="
     #1.爬取网页
     datalist=getData(baseurl)
-    saveapth="豆瓣电影Top250.xls"
+    savepath="豆瓣电影Top250.xls"
+    dbpath="douban250.db"
     #3.保存数据
-    saveData(datalist,saveapth)
-
+    # saveData(datalist,savepath)
+    saveData2DB(datalist,dbpath)
     # askURL("https://movie.douban.com/top250?start=0")
 # 影片详情链接的规则
 findlink=re.compile(r'<a href="(.*?)">')  #创建正则表达式对象，表示规则（字符串的模式）
@@ -104,7 +105,7 @@ def askURL(url):
         if hasattr(e,"reason"):
             print(e.reason)
     return html
-# 保存数据
+# 将数据保存到excel
 def saveData(datalist,savepath):
     print("保存中...")
     book=xlwt.Workbook(encoding="utf-8",style_compression=0) #创建workbook对象
@@ -117,9 +118,49 @@ def saveData(datalist,savepath):
         data=datalist[i]
         for j in range(0,8):
             sheet.write(i+1,j,data[j]) #数据
-
     book.save(savepath) #保存
     print("爬取完毕")
+# 将数据保存到sqlite
+def saveData2DB(datalist,dbpath):
+    init_db(dbpath)
+    conn=sqlite3.connect(dbpath)
+    cur=conn.cursor()
+    for data in datalist:
+        for index in range(len(data)):
+            if index==4 or index==5:
+                continue
+            data[index]='"'+data[index]+'"'
+        sql='''
+                insert into movie250(
+                info_link,pic_link,cname,ename,score,rated,introduction,info)
+                values(%s)'''%",".join(data)
+        # print(sql)
+        cur.execute(sql)
+        conn.commit()
+    cur.close()
+    conn.close()
+    print('保存完成')
+def init_db(dbpath):
+    sql = '''
+    create table movie250
+    (
+    id integer primary key autoincrement,
+    info_link text,
+    pic_link text,
+    cname varchar,
+    ename varchar,
+    score numeric,
+    rated numeric,
+    introduction text,
+    info text
+    )
+    ''' #创建数据表
+    conn = sqlite3.connect(dbpath)
+    cursor=conn.cursor()
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
 if __name__=='__main__': #当程序执行时
     # 调用函数
     main()
+    # init_db("movietest.db")
