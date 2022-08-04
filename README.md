@@ -8,12 +8,12 @@
 <img src="https://github.com/JackFen/python_spider/blob/main/img_of_readme/project_structure.png" width = 20% height = 20% />
 
 ## 所用到的库
-1. sqlite3  //python内置的轻量级数据库
-2. jieba    //一个将中文段落分为许多词语的库
-3. matplotlib //绘制图片的库
-4. wordcloud  //生成词云的库
-5. PIL        //图片处理的库
-6. numpy      //生成词云时处理矩阵运算的库
+1. sqlite3                              //python内置的轻量级数据库
+2. jieba                                //一个将中文段落分为许多词语的库
+3. matplotlib                           //绘制图片的库
+4. wordcloud                            //生成词云的库
+5. PIL                                 //图片处理的库
+6. numpy                               //生成词云时处理矩阵运算的库
 ## 模块
 1. 功能选择
 
