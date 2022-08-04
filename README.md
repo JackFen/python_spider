@@ -35,6 +35,6 @@
 
 4. 数据统计
 
-采用了wordcloud技术，将对电影的一句话评价进行词频统计，并生成词频树显示到页面上
+:采用了wordcloud技术，将对电影的一句话评价进行词频统计，并生成词频树显示到页面上
 
-img src="https://github.com/JackFen/python_spider/blob/main/img_of_readme/4.png" width = 100% height = 100% />
+<img src="https://github.com/JackFen/python_spider/blob/main/img_of_readme/4.png" width = 100% height = 100% />
