@@ -4,7 +4,7 @@
 ## 摘要
 本爬虫项目以doubanTop250榜单为目标，将数据爬取到数据库中，采用一些第三方库对数据进行分类与统计，并采用flask框架实现了数据的可视化
 ## 项目结构
-
+<img src="https://github.com/JackFen/python_spider/blob/main/img_of_readme/1.png" width = 60% height = 60% />
 ## 所用到的库
 1. sqlite3  //python内置的轻量级数据库
 2. jieba    //一个将中文段落分为许多词语的库
